@@ -1,0 +1,40 @@
+body.login-page {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #efeadc;
+}
+
+.login-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* הוספתי צל קטן לעומק */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(221, 35, 35, 0.35);
+    border-radius: 5px;
+}
+
+button {
+    background-color: #f1792a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #49ae15;
+}

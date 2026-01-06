@@ -1,0 +1,90 @@
+/* mostly the same CSS as the other pages */
+
+/* General styling */
+body {
+    background-color: #fdf1d7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    direction: rtl;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ba782e;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    flex-grow: 1;
+    text-align: center;
+    color: #333;
+    font-size: 2.5em;
+}
+
+.back-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background-color: #5a95e1;
+}
+
+.credit-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: white;
+    border: 2px solid #ba782e;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    width: 350px;
+}
+
+.balance-text {
+    font-size: 3.5em;
+    color: #ca8126;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ba782e;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.action-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+.action-btn:hover {
+    background-color: #5a95e1;
+}
+
+/* Responsiveness for mobile*/
+@media (max-width: 768px) {
+    header { flex-direction: column; gap: 10px; }
+    header h1 { padding-right: 0; font-size: 2em; }
+    .card { width: 90%; padding: 20px; }
+}

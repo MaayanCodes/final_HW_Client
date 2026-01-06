@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קטגוריות - קפה מנתי</title>
+    <link rel="stylesheet" href="CategoriesStyle.css">
+</head>
+<body>
+
+<header>
+    <h1>בחר קטגוריה</h1>
+    <button class="back-btn" onclick="location.href='Home.html'">חזור לבית</button>
+</header>
+
+<main class="categories-grid">
+    <div class="category-card" onclick="selectCategory('משקאות')">
+        <img src="photos/drinks.jpg" alt="משקאות">
+        <h3>משקאות</h3>
+    </div>
+
+    <div class="category-card" onclick="selectCategory('מאפים')">
+        <img src="photos/pastries.jpg" alt="מאפים">
+        <h3>מאפים</h3>
+    </div>
+
+    <div class="category-card" onclick="selectCategory('סלטים')">
+        <img src="photos/salads.jpg" alt="סלטים">
+        <h3>סלטים</h3>
+    </div>
+
+    <div class="category-card" onclick="selectCategory('כריכים')">
+        <img src="photos/sandwiches.jpg" alt="כריכים">
+        <h3>כריכים</h3>
+    </div>
+
+    <div class="category-card" onclick="selectCategory('טוסטים')">
+        <img src="photos/toasts.jpg" alt="טוסטים">
+        <h3>טוסטים</h3>
+    </div>
+
+    <div class="category-card" onclick="selectCategory('ארוחות בוקר')">
+        <img src="photos/breakfast.jpg" alt="ארוחות בוקר">
+        <h3>ארוחות בוקר</h3>
+    </div>
+</main>
+
+<script src="CategoriesScript.js"></script>
+</body>
+</html>

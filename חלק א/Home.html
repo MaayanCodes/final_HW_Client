@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קפה מנתי - מסך ראשי</title>
+    <link rel="stylesheet" href="homeStyle.css">
+</head>
+<body>
+
+<header>
+    <div class="greeting-wrapper">
+        <h1>שלום, <span id="userName">אורח</span>!</h1>
+        <div id="dateTimeDisplay">
+            <span id="currentDate"></span> | <span id="currentTime"></span>
+        </div>
+    </div>
+</header>
+
+<hr>
+
+<main>
+    <section id="logo-section">
+        <a href="Categories.html">
+            <img src="photos/logo.jpg" alt="לוגו קפה מנתי - לחץ למעבר לתפריט" />
+        </a>
+    </section>
+
+    <nav id="dashboard-links">
+        <div class="card">
+            <h2>ההזמנות שלי</h2>
+            <a href="History.html">צפייה בהיסטוריית הזמנות</a>
+        </div>
+
+        <div class="card">
+            <h2>מועדון לקוחות</h2>
+            <p>קפה קרדיט: <span id="creditAmount">0</span> ₪</p>
+            <a href="Credit.html">טעינת קרדיט</a>
+        </div>
+    </nav>
+
+    <hr>
+
+    <section id="stats-section">
+        <h2>סטטיסטיקת קניות</h2>
+        <div id="histogramContainer">
+            <p>פה </p>
+        </div>
+    </section>
+
+</main>
+
+<script src="HomeScript.js"></script>
+</body>
+</html>

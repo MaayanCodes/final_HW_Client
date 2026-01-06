@@ -1,0 +1,82 @@
+/* General styling */
+body {
+    background-color: #fdf1d7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    direction: rtl;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ba782e;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    flex-grow: 1;
+    text-align: center;
+    color: #333;
+    /* Increased title size */
+    font-size: 2.8em;
+}
+
+/* Styling the button*/
+.back-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.back-btn:hover {
+    background-color: #5a95e1;
+}
+
+/* Grid for items */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.item-card {
+    background-color: white;
+    border: 1px solid #ba782e;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+}
+
+.item-card img {
+    width: 100%;
+    height: 180px;
+    /* Same size for all photos */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Add to Order Button */
+.add-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.add-btn:hover {
+    background-color: #5a95e1;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .items-grid { grid-template-columns: 1fr; }
+    header { flex-direction: column; gap: 10px; }
+}

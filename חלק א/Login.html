@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>כניסה - קפה מנתי</title>
+    <link rel="stylesheet" href="loginStyle.css">
+</head>
+<body class="login-page">
+
+<div class="login-container">
+    <h1>ברוכים הבאים ל"קפה מנתי"</h1>
+    <p>נא להזין פרטים כדי להתחיל להזמין:</p>
+
+    <div class="form-group">
+        <input type="text" id="userNameInput" placeholder="שם משתמש">
+
+        <input type="password" id="userPassInput" placeholder="סיסמה">
+
+        <button onclick="login()">כניסה לתפריט</button>
+    </div>
+
+    <p id="errorMsg" style="color: red; display: none;">נא להזין שם משתמש וסיסמה!</p>
+</div>
+
+<script src="loginScript.js"></script>
+</body>
+</html>

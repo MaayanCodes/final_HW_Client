@@ -1,0 +1,103 @@
+/* General settings */
+body {
+    background-color: #fdf1d7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    direction: rtl;
+}
+
+/* Header layout using Flex */
+header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ba782e;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+    color: #333;
+    /* Increased title size */
+    font-size: 2.8em;
+}
+
+/* Styling the button*/
+.back-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+
+.back-btn:hover {
+    background-color: #5a95e1;
+}
+
+/* Grid layout - Default for Desktop */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Card styling */
+.category-card {
+    background-color: white;
+    border: 1px solid #ba782e;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+}
+
+.category-card img {
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+    /* Prevents image stretching */
+    object-fit: cover;
+}
+
+.category-card h3 {
+    color: #ca8126;
+    margin-top: 10px;
+}
+
+/* Specific logic for Desktop  */
+@media (min-width: 769px) {
+    header h1 {
+        /* Shifts the title slightly left to center */
+        padding-right: 120px;
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 768px) {
+    .categories-grid {
+        /* Switch to 1 column*/
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        /* Stacks items vertically on mobile */
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header h1 {
+        /* Removes the shift to stay centered on mobile */
+        padding-right: 0;
+        /* Smaller title for small screens */
+        font-size: 2em;
+    }
+
+}

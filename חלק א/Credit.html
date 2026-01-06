@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טעינת קרדיט - קפה מנתי</title>
+    <link rel="stylesheet" href="CreditStyle.css">
+</head>
+<body>
+
+<header>
+    <h1 id="pageTitle">טעינת קרדיט</h1>
+    <button class="back-btn" onclick="location.href='Home.html'">חזור לבית</button>
+</header>
+
+<main class="credit-box">
+    <div class="card">
+        <h3>היתרה שלך כרגע:</h3>
+        <div id="balanceDisplay" class="balance-text">0 ₪</div>
+
+        <p>כמה כסף תרצה להוסיף?</p>
+        <input type="text" id="amountInput" placeholder="הכנס סכום כאן">
+
+        <button class="action-btn" onclick="addMoney()">בצע טעינה</button>
+    </div>
+</main>
+
+<script src="CreditScript.js"></script>
+</body>
+</html>
