@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>היסטוריית הזמנות - קפה מנתי</title>
+    <link rel="stylesheet" href="HistoryStyle.css">
 </head>
 <body>
 
+<header>
+    <h1>היסטוריית הזמנות</h1>
+    <button class="back-btn" onclick="location.href='Home.html'">חזור לבית</button>
+</header>
+
+<main class="history-container">
+    <table id="myOrdersTable">
+        <tr class="table-header">
+            <td>שם המוצר</td>
+            <td>מחיר</td>
+            <td>תאריך רכישה</td>
+        </tr>
+    </table>
+
+    <div id="emptyMsg">
+        עדיין לא ביצעת הזמנות. נשמח לראות אותך בתפריט!
+    </div>
+</main>
+
+<script src="HistoryScript.js"></script>
 </body>
 </html>

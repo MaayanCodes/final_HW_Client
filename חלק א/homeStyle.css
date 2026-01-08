@@ -10,9 +10,12 @@ body {
 /* Header styling using Flex */
 header {
     display: flex;
-    flex-direction: column;    /* Stack items vertically */
-    align-items: center;       /* Center items horizontally */
-    text-align: center;        /* Centers the text lines themselves */
+    /* Stack items vertically */
+    flex-direction: column;
+    /* Center items horizontally */
+    align-items: center;
+    /* Centers the text lines themselves */
+    text-align: center;
     background-color: white;
     padding: 20px 40px;
     border-radius: 20px;
@@ -28,7 +31,8 @@ header {
 /* Styling the greeting text inside the header */
 header h1 {
     font-size: 2.5em;
-    margin: 0;           /* Removes default spacing around the heading */
+    /* Removes default spacing around the heading */
+    margin: 0;
     color: #333;
 }
 
@@ -56,7 +60,8 @@ header h1 {
 
 /* took from https://prismic.io/blog/css-hover-effects */
 #logo-section img:hover {
-    transform: scale(1.1); /* Modern touch - zoom on hover */
+    /* zoom on hover */
+    transform: scale(1.1);
 }
 
 /* Dashboard cards container */
@@ -82,9 +87,7 @@ header h1 {
     flex-grow: 1;
     min-width: 280px;
     max-width: 480px;
-
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* Text in box color */
@@ -127,4 +130,26 @@ header h1 {
     align-items: center;
     justify-content: center;
     margin-top: 15px;
+}
+
+
+/* CSS FOR CHART.JS HISTOGRAM */
+
+/* We override the placeholder styling to fit the chart properly */
+#histogramContainer {
+    /* Removing the dashed border from the placeholder */
+    border: none;
+    background-color: transparent;
+    /* Ensuring the chart has enough room but doesn't overflow */
+    height: auto;
+    min-height: 300px;
+    width: 100%;
+    /* Change from flex to block for Canvas sizing */
+    display: block;
+}
+
+/* Ensure the canvas (the actual drawing) is responsive */
+#purchaseChart {
+    max-width: 100%;
+    height: 100% !important;
 }
