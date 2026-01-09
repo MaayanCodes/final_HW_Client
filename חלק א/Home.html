@@ -12,7 +12,7 @@
 
 <div class="header">
     <div class="greeting-wrapper">
-        <h1>שלום, <span id="userName"></span>!</h1>
+        <h1 id="userName"></h1>
         <div id="dateTimeDisplay">
             <span id="currentDate"></span> | <span id="currentTime"></span>
         </div>
@@ -31,6 +31,7 @@
     <div id="dashboard-links">
         <div class="card">
             <h2>ההזמנות שלי</h2>
+            <p id="monthlyOrdersCount">ביצעת 0 הזמנות החודש</p>
             <a href="History.html">צפייה בהיסטוריית הזמנות</a>
         </div>
 
@@ -38,6 +39,11 @@
             <h2>מועדון לקוחות</h2>
             <p>קפה קרדיט: <span id="creditAmount">0</span> ₪</p>
             <a href="Credit.html">טעינת קרדיט</a>
+        </div>
+
+        <div id="last-order-section" class="card">
+            <h2>ההזמנה האחרונה שלי</h2>
+            <p id="lastOrderDetails">עדיין לא בוצעו הזמנות</p>
         </div>
     </div>
 

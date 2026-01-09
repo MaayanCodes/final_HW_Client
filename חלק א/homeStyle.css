@@ -110,6 +110,12 @@ body {
     background-color: #5a95e1;
 }
 
+#lastOrderDetails {
+    font-size: 1.1em;
+    color: black;
+    font-weight: bold;
+}
+
 /* Histogram placeholder */
 #stats-section {
     background-color: white;
