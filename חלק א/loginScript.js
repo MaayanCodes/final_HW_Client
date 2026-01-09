@@ -1,40 +1,62 @@
-// Database of users
-const usersDatabase = [
-    { user: "מעיין", pass: "1234" },
-    { user: "לקוח", pass: "456" },
-    { user: "מנהל", pass: "999" }
-];
+// Set initial authorized user in LocalStorage
+localStorage.setItem('user', 'manti@cafe.com');
+localStorage.setItem('password', '12345678');
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
 
 function login() {
-    // Get input values and error message element
-    const username = document.getElementById('userNameInput').value;
+    // Get values from input fields
+    const email = document.getElementById('userEmailInput').value;
     const password = document.getElementById('userPassInput').value;
+    const nickname = document.getElementById('userNickInput').value;
     const errorMsg = document.getElementById('errorMsg');
 
-    // Check that the fields are not empty
-    if (username.trim() === "" || password.trim() === "") {
-        errorMsg.innerText = "נא להזין שם משתמש וסיסמה!";
+    // RegEx for email validation
+    const emailRegEx = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    // Check email format
+    if (!emailRegEx.test(email)) {
+        errorMsg.innerText = "נא להזין אימייל תקין";
         errorMsg.style.display = "block";
         return;
     }
 
-    let isUserValid = false;
-
-    // Check if the user is in the DB
-    for (let i = 0; i < usersDatabase.length; i++) {
-        if (usersDatabase[i].user === username && usersDatabase[i].pass === password) {
-            isUserValid = true;
-            break;
-        }
+    // Check password length
+    if (password.length < 8) {
+        errorMsg.innerText = "הסיסמה חייבת להיות לפחות 8 תווים";
+        errorMsg.style.display = "block";
+        return;
     }
 
-    // Move to menu page if valid, otherwise show error
-    if (isUserValid) {
-        // Save username for later
-        localStorage.setItem('loggedUser', username);
-        window.location.href = 'Home.html'; // Not in slides, found on web
-    } else {
-        errorMsg.innerText = "שם משתמש או סיסמה לא נכונים!";
+    // Check if nickname is empty
+    if (nickname.trim() === "") {
+        errorMsg.innerText = "נא להזין כינוי";
+        errorMsg.style.display = "block";
+        return;
+    }
+
+    // Get saved credentials for comparison
+    const savedUser = localStorage.getItem('user');
+    const savedPass = localStorage.getItem('password');
+
+    // Verify user credentials
+    if (email === savedUser && password === savedPass) {
+        // Clear previous storage data
+        localStorage.clear();
+
+        // Save info back for future logins
+        localStorage.setItem('user', savedUser);
+        localStorage.setItem('password', savedPass);
+
+        // Save nickname of current session for home page
+        localStorage.setItem('userNickname', nickname);
+
+        // Redirect to Home page
+        window.location.href = 'Home.html';
+    }
+    else {
+        // Show error for wrong credentials
+        errorMsg.innerText = "אימייל או סיסמה לא נכונים";
         errorMsg.style.display = "block";
     }
 }

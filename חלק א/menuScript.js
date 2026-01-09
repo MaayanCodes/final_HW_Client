@@ -1,79 +1,83 @@
-// Database of items
-const menuItems = [
-    { id: 1, name: "קפוצ'ינו", price: 15, category: "משקאות", img: "photos/Cappuccino.jpg", desc: "קפה איטלקי קלאסי עם חלב מוקצף" },
-    { id: 2, name: "אייס לאטה", price: 18, category: "משקאות", img: "photos/Iced Latte.jpg", desc: "קפה קר מרענן על בסיס חלב" },
-        { id: 3, name: "תה נענע", price: 12, category: "משקאות", img: "photos/Mint Tea.jpg", desc: "תה חם עם עלי נענע טריים" },
-    { id: 4, name: "קרואסון חמאה", price: 14, category: "מאפים", img: "photos/Butter Croissant.jpg", desc: "בצק עלים פריזאי קלאסי" },
-    { id: 5, name: "דניש גבינה", price: 16, category: "מאפים", img: "photos/Cheese Danish.jpg", desc: "מאפה שמרים במילוי גבינה עשירה" },
-    { id: 6, name: "מאפין שוקולד", price: 12, category: "מאפים", img: "photos/Chocolate Muffin.jpg", desc: "מאפין נימוח עם פצפוצי שוקולד" },
-    { id: 7, name: "סלט יווני", price: 42, category: "סלטים", img: "photos/Greek Salad.jpg", desc: "ירקות גינה, פטה וזיתי קלמטה" },
-    { id: 8, name: "סלט חלומי", price: 48, category: "סלטים", img: "photos/Halloumi Salad.jpg", desc: "קוביות חלומי מטוגנות על מצע ירקות" },
-    { id: 9, name: "כריך טוניסאי", price: 35, category: "כריכים", img: "photos/Tunisian Sandwich.jpg", desc: "טונה, תפוח אדמה, ביצה קשה ואריסה" },
-    { id: 10, name: "כריך מוצרלה", price: 32, category: "כריכים", img: "photos/Mozzarella Sandwich.jpg", desc: "מוצרלה טרייה, עגבנייה ופסטו" },
-    { id: 11, name: "טוסט גבינות", price: 28, category: "טוסטים", img: "photos/Grilled Cheese Sandwich.jpg", desc: "גבינה צהובה, בולגרית ורטבים" },
-    { id: 12, name: "טוסט פיצה", price: 30, category: "טוסטים", img: "photos/Pizza Toast.jpg", desc: "גבינה צהובה, רוטב פיצה וזיתים" },
-    { id: 13, name: "בוקר יחיד", price: 65, category: "ארוחות בוקר", img: "photos/Single Breakfast.jpg", desc: "ביצים לבחירה, מטבלים, לחם ושתייה" },
-    { id: 14, name: "שקשוקה ביתית", price: 55, category: "ארוחות בוקר", img: "photos/Homemade Shakshuka.jpg", desc: "שתי ביצים ברוטב עגבניות פיקנטי" }
-];
+// Helper function to map category names to IDs from the JSON
+function getCategoryId(categoryName) {
+    if (categoryName === "משקאות") return 1;
+    if (categoryName === "מאפים") return 2;
+    if (categoryName === "סלטים") return 3;
+    if (categoryName === "כריכים") return 4;
+    if (categoryName === "טוסטים") return 5;
+    if (categoryName === "ארוחות בוקר") return 6;
+    return 0;
+}
 
-// Render items based on the chosen category
-function renderMenu(category) {
+// Function to render items based on the chosen category
+function renderMenu(categoryName) {
+    // Get the container element using DOM
     let container = document.getElementById('itemsContainer');
     container.innerHTML = "";
 
+    // Load items from local storage
+    let menuData = localStorage.getItem('menuItems');
+    let menuItems = [];
+
+    // If data exists, parse the JSON string
+    if (menuData != null) {
+        menuItems = JSON.parse(menuData);
+    }
+
+    // Get the ID for the current category string
+    let categoryId = getCategoryId(categoryName);
+
+    // Loop through all items loaded from storage
     for (let i = 0; i < menuItems.length; i++) {
         let item = menuItems[i];
 
-        if (item.category === category) {
-            // Create Card Container
+        // Filter items by category ID
+        if (item.Categoryld === categoryId) {
+            // Create item card
             let card = document.createElement('div');
             card.setAttribute('class', 'item-card');
 
-            // Create Image
+            // Set up the product image
             let img = document.createElement('img');
             img.src = item.img;
-            img.alt = item.name;
 
-            // Create Title
+
+            // Set up title
             let h3 = document.createElement('h3');
-            h3.innerText = item.name;
+            h3.innerText = item.ProductName;
 
-            // Create Description
+            // Set up description
             let p = document.createElement('p');
             p.innerText = item.desc;
 
-            // Create Price Tag
+            // Set up price
             let priceTag = document.createElement('div');
-            priceTag.className = 'price-tag';
-            priceTag.innerText = item.price + ' ₪';
+            priceTag.innerText = item.Price + ' ₪';
 
-            // Create Purchase Button
+            // Create buy button
             let buyBtn = document.createElement('button');
             buyBtn.className = 'add-btn';
             buyBtn.innerText = 'רכישה';
 
-            // On click, start the purchase process for this specific item
+            // Add click event for purchase logic
             buyBtn.onclick = function() {
                 processPurchase(item);
             };
 
-            // Build the card
+            // Assemble the card and append to container
             card.appendChild(img);
             card.appendChild(h3);
             card.appendChild(p);
             card.appendChild(priceTag);
             card.appendChild(buyBtn);
-
-            // Add the card
             container.appendChild(card);
         }
     }
 }
 
-// Function to handle the purchase logic
+// Handle the purchase process and credit updates
 function processPurchase(item) {
-
-    // Get the current credit from storage
+    // Check current balance in storage
     let creditValue = localStorage.getItem('userCredit');
     let currentBalance = 0;
 
@@ -81,53 +85,51 @@ function processPurchase(item) {
         currentBalance = parseFloat(creditValue);
     }
 
-    // Check if user has enough money
-    if (currentBalance >= item.price) {
+    // Compare balance with item price (convert string price to number)
+    let itemPrice = parseFloat(item.Price);
 
-        // Update Balance
-        let newBalance = currentBalance - item.price;
+    if (currentBalance >= itemPrice) {
+        // Deduct price and update storage
+        let newBalance = currentBalance - itemPrice;
         localStorage.setItem('userCredit', newBalance);
 
-        // Register the Order in History
+        // Update order history
         let ordersFromStorage = localStorage.getItem('userOrders');
         let ordersArray = [];
 
-        // If history exists, parse it. Otherwise, use empty array.
-        if (ordersFromStorage != null) {
-            // Convert from JSON
+        if (ordersFromStorage !== null) {
             ordersArray = JSON.parse(ordersFromStorage);
         }
 
-        // Create the order data object
+        // Create new order record
         let newOrder = {
-            name: item.name,
-            price: item.price,
-            date: new Date().toLocaleDateString('he-IL')
+            ProductName: item.ProductName,
+            Price: item.Price,
+            Date: new Date().toLocaleDateString('he-IL')
         };
 
-        // Add to history and save back as JSON
+        // Save order back to storage
         ordersArray.push(newOrder);
         localStorage.setItem('userOrders', JSON.stringify(ordersArray));
 
-        // Notify User and Refresh
-        alert("הקנייה בוצעה בהצלחה! קניית:  " + item.name);
-
-    }
-    else {
-        // If balance is too low
+        // Show success message to user
+        alert("הקנייה בוצעה בהצלחה! רכשת: " + item.ProductName);
+    } else {
+        // Show error message for low balance
         alert("הפעולה נכשלה: אין מספיק כסף בחשבון");
     }
 }
 
-// Initialization function
+// Main initialization function
 function init() {
+    // Get the category that was clicked in the previous screen
     let chosenCategory = localStorage.getItem('selectedCategory');
 
-    // Check if category exists before rendering
-    if (chosenCategory != null) {
+    if (chosenCategory !== null) {
         document.getElementById('menuTitle').innerText = "תפריט " + chosenCategory;
         renderMenu(chosenCategory);
     }
 }
 
+// Start the page logic
 init();

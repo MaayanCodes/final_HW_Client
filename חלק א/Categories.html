@@ -8,12 +8,13 @@
 </head>
 <body>
 
-<header>
+<div class="header">
     <h1>בחר קטגוריה</h1>
     <button class="back-btn" onclick="location.href='Home.html'">חזור לבית</button>
-</header>
+</div>
 
-<main class="categories-grid">
+<div class="categories-grid">
+
     <div class="category-card" onclick="selectCategory('משקאות')">
         <img src="photos/drinks.jpg" alt="משקאות">
         <h3>משקאות</h3>
@@ -43,8 +44,10 @@
         <img src="photos/breakfast.jpg" alt="ארוחות בוקר">
         <h3>ארוחות בוקר</h3>
     </div>
-</main>
+
+</div>
 
 <script src="CategoriesScript.js"></script>
+
 </body>
 </html>

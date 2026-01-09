@@ -9,7 +9,7 @@ body {
     direction: rtl;
 }
 
-header {
+.header {
     display: flex;
     align-items: center;
     border-bottom: 2px solid #ba782e;
@@ -17,7 +17,7 @@ header {
     margin-bottom: 30px;
 }
 
-header h1 {
+.header h1 {
     flex-grow: 1;
     text-align: center;
     color: #333;
@@ -84,7 +84,7 @@ input {
 
 /* Responsiveness for mobile*/
 @media (max-width: 768px) {
-    header { flex-direction: column; gap: 10px; }
-    header h1 { padding-right: 0; font-size: 2em; }
+    .header { flex-direction: column; gap: 10px; }
+    .header h1 { padding-right: 0; font-size: 2em; }
     .card { width: 90%; padding: 20px; }
 }

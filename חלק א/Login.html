@@ -6,21 +6,21 @@
     <title>כניסה - קפה מנתי</title>
     <link rel="stylesheet" href="loginStyle.css">
 </head>
-<body class="login-page">
+<body>
 
 <div class="login-container">
     <h1>ברוכים הבאים ל"קפה מנתי"</h1>
-    <p>נא להזין פרטים כדי להתחיל להזמין:</p>
+    <p>נא להזין פרטים כדי להיכנס לחשבון:</p>
 
     <div class="form-group">
-        <input type="text" id="userNameInput" placeholder="שם משתמש">
-
-        <input type="password" id="userPassInput" placeholder="סיסמה">
+        <input type="text" id="userEmailInput" placeholder="אימייל">
+        <input type="text" id="userPassInput" placeholder="סיסמה (לפחות 8 תווים)">
+        <input type="text" id="userNickInput" placeholder="איך תרצה שנקרא לך? ">
 
         <button onclick="login()">כניסה לתפריט</button>
     </div>
 
-    <p id="errorMsg" style="color: red; display: none;">נא להזין שם משתמש וסיסמה!</p>
+    <p id="errorMsg"></p>
 </div>
 
 <script src="loginScript.js"></script>

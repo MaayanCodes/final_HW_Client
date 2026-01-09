@@ -8,7 +8,7 @@ body {
 }
 
 /* Header layout using Flex */
-header {
+.header {
     display: flex;
     align-items: center;
     border-bottom: 2px solid #ba782e;
@@ -16,7 +16,7 @@ header {
     margin-bottom: 25px;
 }
 
-header h1 {
+.header h1 {
     flex-grow: 1;
     text-align: center;
     margin: 0;
@@ -87,13 +87,13 @@ header h1 {
         grid-template-columns: 1fr;
     }
 
-    header {
+    .header {
         /* Stacks items vertically on mobile */
         flex-direction: column;
         gap: 15px;
     }
 
-    header h1 {
+    .header h1 {
         /* Removes the shift to stay centered on mobile */
         padding-right: 0;
         /* Smaller title for small screens */

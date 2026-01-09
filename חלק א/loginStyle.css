@@ -1,40 +1,68 @@
-body.login-page {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* General body styling */
+body {
     background-color: #efeadc;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    /* Default padding for desktop */
+    padding: 100px;
 }
 
+/* Container for login form */
 .login-container {
-    background: #ffffff;
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 15px;
     text-align: center;
-    width: 350px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* הוספתי צל קטן לעומק */
+    /* Fixed width for desktop */
+    width: 400px;
+    /* Centering the div on the page */
+    margin: auto;
+    border: 2px solid #ba782e;
 }
 
+/* Styling the inputs */
 .form-group input {
-    width: 100%;
+    /* Taking most of the container width */
+    width: 90%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid rgba(221, 35, 35, 0.35);
+    border: 1px solid #ba782e;
     border-radius: 5px;
 }
 
+/* Button styling */
 button {
     background-color: #f1792a;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
     width: 100%;
 }
 
 button:hover {
-    background-color: #49ae15;
+    background-color: #5a95e1;
+}
+
+/* Error message default state */
+#errorMsg {
+    color: red;
+    display: none;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Adjusting body padding for small screens */
+    body {
+        padding: 40px;
+    }
+
+    /* Making the container fluid on mobile */
+    .login-container {
+        /* Using percentage for width as seen in slides */
+        width: 90%;
+        padding: 20px;
+    }
 }

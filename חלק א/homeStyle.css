@@ -8,7 +8,7 @@ body {
 }
 
 /* Header styling using Flex */
-header {
+.header {
     display: flex;
     /* Stack items vertically */
     flex-direction: column;
@@ -22,14 +22,14 @@ header {
     border: 2px solid #ba782e;
     margin-bottom: 25px;
 
-    /* Limit the width so it doesn't span the whole screen */
+    /* Limit the width so it doesn't span to the whole screen */
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Styling the greeting text inside the header */
-header h1 {
+.header h1 {
     font-size: 2.5em;
     /* Removes default spacing around the heading */
     margin: 0;
@@ -122,16 +122,9 @@ header h1 {
     margin: 0 auto;
 }
 
-#histogramContainer {
-    height: 150px;
-    background-color: #f9f9f9;
-    border: 1px dashed #ba782e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;
+#stats-section h2{
+    color: #ca8126;
 }
-
 
 /* CSS FOR CHART.JS HISTOGRAM */
 
@@ -148,7 +141,7 @@ header h1 {
     display: block;
 }
 
-/* Ensure the canvas (the actual drawing) is responsive */
+/* Ensure the canvas is responsive */
 #purchaseChart {
     max-width: 100%;
     height: 100% !important;

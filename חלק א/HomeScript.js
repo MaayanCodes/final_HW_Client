@@ -1,7 +1,7 @@
 // Display the logged-in user's name
 function showGreeting() {
-    let user = localStorage.getItem('loggedUser');
-    if (user !== null) {
+    let user = localStorage.getItem('userNickname');
+    if (user) {
         document.getElementById('userName').innerText = user;
     }
 }
@@ -58,7 +58,7 @@ function buildHistogram() {
     let counts = {};
 
     for (let i = 0; i < allOrders.length; i++) {
-        let productName = allOrders[i].name;
+        let productName = allOrders[i].ProductName;
 
         if (counts[productName] === undefined) {
             // First time we see this product

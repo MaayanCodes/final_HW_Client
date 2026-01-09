@@ -7,7 +7,7 @@ body {
     direction: rtl;
 }
 
-header {
+.header {
     display: flex;
     align-items: center;
     border-bottom: 2px solid #ba782e;
@@ -15,7 +15,7 @@ header {
     margin-bottom: 20px;
 }
 
-header h1 {
+.header h1 {
     flex-grow: 1;
     text-align: center;
     color: #333;
@@ -78,5 +78,5 @@ header h1 {
 /* Responsive adjustment */
 @media (max-width: 768px) {
     .items-grid { grid-template-columns: 1fr; }
-    header { flex-direction: column; gap: 10px; }
+    .header { flex-direction: column; gap: 10px; }
 }
