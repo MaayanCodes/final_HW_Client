@@ -1,0 +1,83 @@
+/* General page settings */
+body {
+    background-color: #fdf1d7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Header styling using flex */
+.header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ba782e;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+/* Title centering */
+.header h1 {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Main content layout */
+.load-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Card styling for upload sections */
+.load-card {
+    background-color: white;
+    border: 2px solid #ba782e;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.back-btn:hover {
+    background-color: #5a95e1;
+}
+
+/* Button layout and design */
+.action-btn {
+    background-color: #ca8126;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Hover effect for buttons */
+.action-btn:hover {
+    background-color: #5a95e1;
+}
+
+/* Hidden status message */
+#statusMsg {
+    font-weight: bold;
+    display: none;
+    margin-top: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .load-container {
+        width: 95%;
+    }
+}

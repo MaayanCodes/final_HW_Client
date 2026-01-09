@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טעינת נתונים - קפה מנתי</title>
+    <link rel="stylesheet" href="LoadStyle.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>טעינת נתונים</h1>
+    <button class="back-btn" onclick="location.href='Home.html'">חזור לבית</button>
+</div>
+
+<div class="load-container">
+    <div class="load-card">
+        <h3>טעינת תפריט</h3>
+        <p>בחר קובץ JSON לעדכון מוצרי הקפה:</p>
+        <input type="file" id="menuFileInput" accept=".json">
+        <button class="action-btn" onclick="loadMenuJSON()">טען תפריט</button>
+    </div>
+
+    <div class="load-card">
+        <h3>טעינת היסטוריה</h3>
+        <p>בחר קובץ JSON להוספת הזמנות קודמות:</p>
+        <input type="file" id="historyFileInput" accept=".json">
+        <button class="action-btn" onclick="loadHistoryJSON()">טען היסטוריה</button>
+    </div>
+
+    <p id="statusMsg"></p>
+</div>
+
+<script src="LoadScript.js"></script>
+</body>
+</html>
