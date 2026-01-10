@@ -23,7 +23,7 @@ function loadMenuJSON() {
 
     // Check if file was selected
     if (!file) {
-        showStatus("Please select a file first", true);
+        showStatus("ראשית נא בחר קובץ", true);
         return;
     }
 
@@ -48,7 +48,7 @@ function loadHistoryJSON() {
 
     // Verify file selection
     if (!file) {
-        showStatus("Please select a file first", true);
+        showStatus("ראשית נא בחר קובץ", true);
         return;
     }
 
@@ -69,7 +69,7 @@ function loadHistoryJSON() {
 
         // Save combined list to storage
         localStorage.setItem('userOrders', JSON.stringify(currentOrders));
-        showStatus("History loaded successfully", false);
+        showStatus("ההיסטוריה נטענה בהצלחה", false);
     };
     reader.readAsText(file);
 }
