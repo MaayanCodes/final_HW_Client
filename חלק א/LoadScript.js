@@ -35,7 +35,7 @@ function loadMenuJSON() {
         let data = JSON.parse(e.target.result); // e.target.result - the content of the file
         // Store in LocalStorage
         localStorage.setItem('menuItems', JSON.stringify(data));
-        showStatus("Menu loaded successfully", false);
+        showStatus("התפריט נטען בהצלחה", false);
     };
     reader.readAsText(file);
 }
