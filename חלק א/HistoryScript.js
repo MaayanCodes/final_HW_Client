@@ -18,8 +18,8 @@ function displayOrders() {
         ordersList.sort(function(a, b) {
             // Convert DD.MM.YYYY to YYYYMMDD for reliable comparison
             // for example 10.1.2026 => 2026110
-            let dateA = a.Date.split('.').reverse().join('');
-            let dateB = b.Date.split('.').reverse().join('');
+            let dateA = a.Date.split('/').reverse().join('');
+            let dateB = b.Date.split('/').reverse().join('');
 
             // Return descending order (newest date becomes higher string value)
             if (dateB > dateA) return 1;

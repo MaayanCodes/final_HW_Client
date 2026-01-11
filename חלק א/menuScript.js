@@ -77,7 +77,6 @@ function renderMenu(categoryName) {
 
 // Handle the purchase process and credit updates
 function processPurchase(item) {
-    // Check current balance in storage
     let creditValue = localStorage.getItem('userCredit');
     let currentBalance = 0;
 
@@ -85,37 +84,54 @@ function processPurchase(item) {
         currentBalance = parseFloat(creditValue);
     }
 
-    // Compare balance with item price (convert string price to number)
     let itemPrice = parseFloat(item.Price);
 
     if (currentBalance >= itemPrice) {
-        // Deduct price and update storage
         let newBalance = currentBalance - itemPrice;
         localStorage.setItem('userCredit', newBalance);
 
-        // Update order history
+        // Fetch existing order history
         let ordersFromStorage = localStorage.getItem('userOrders');
         let ordersArray = [];
 
+        // If history exists, convert it from JSON string to an array
         if (ordersFromStorage !== null) {
             ordersArray = JSON.parse(ordersFromStorage);
         }
+
+        // --- Standardizing the date with leading zeros and slashes ---
+        let now = new Date();
+        let d = now.getDate();
+        let m = now.getMonth() + 1; // Months are 0-11
+        let y = now.getFullYear();
+
+        // Add leading zero if needed
+        if (d < 10) {
+            d = "0" + d;
+        }
+        if (m < 10) {
+            m = "0" + m;
+        }
+
+        // Create formatted date string: DD/MM/YYYY
+        let formattedDate = d + "/" + m + "/" + y;
 
         // Create new order record
         let newOrder = {
             ProductName: item.ProductName,
             Price: item.Price,
-            Date: new Date().toLocaleDateString('he-IL')
+            Date: formattedDate
         };
 
-        // Save order back to storage
+        // Add the new order to the ordersArray
         ordersArray.push(newOrder);
+
+        // Save the updated ordersArray back to storage as a string
         localStorage.setItem('userOrders', JSON.stringify(ordersArray));
 
-        // Show success message to user
         alert("הקנייה בוצעה בהצלחה! רכשת: " + item.ProductName);
-    } else {
-        // Show error message for low balance
+    }
+    else {
         alert("הפעולה נכשלה: אין מספיק כסף בחשבון");
     }
 }

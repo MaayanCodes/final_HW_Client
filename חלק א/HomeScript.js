@@ -45,7 +45,7 @@ function showMonthlyOrders() {
         for (let i = 0; i < orders.length; i++) {
             // Split the date string "DD.MM.YYYY" into an array using the dot as a separator
             // Example: "15.05.2024" becomes ["15", "05", "2024"]
-            let dateParts = orders[i].Date.split('.');
+            let dateParts = orders[i].Date.split('/');
 
             // Convert the string parts to integers for comparison
             let orderMonth = parseInt(dateParts[1]); // The second part is the month
@@ -149,14 +149,14 @@ function buildHistogram() {
 
     // Colors for the bars
     let colorsPalette = [
-        '#8FBC8F',
-        '#558B5E',
-        '#C0D9AF',
-        '#9EA858',
-        '#4E8A76',
-        '#3A5F38',
-        '#8CD1A8',
-        '#6E8F58'
+        '#4E79A7',
+        '#A0CBE8',
+        '#F28E2B',
+        '#FFBE7D',
+        '#59A14F',
+        '#8CD17D',
+        '#B6992D',
+        '#499894'
     ];
 
     // Get the canvas context for Chart.js
