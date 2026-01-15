@@ -15,13 +15,21 @@
 
 <div class="credit-box">
 
+    <div class="credit-card-visual">
+        <div class="card-brand">קפה מנתי - כרטיס חבר</div>
+        <div class="card-chip"></div>
+        <div class="card-balance-label">יתרה טעונה:</div>
+        <div class="card-amount"><span id="displayBalance">0</span> ₪</div>
+        <div class="card-holder" id="displayNickname">אורח</div>
+    </div>
+
     <div class="card">
-        <h3>היתרה שלך כרגע:</h3>
-        <div id="balanceDisplay" class="balance-text">0 ₪</div>
-        <p>כמה כסף תרצה להוסיף?</p>
+        <h3>טעינת כסף לחשבון</h3>
+        <p>הכנס את הסכום שברצונך להוסיף:</p>
         <input type="text" id="amountInput" placeholder="הכנס סכום חיובי">
         <button class="action-btn" onclick="addMoney()">בצע טעינה</button>
     </div>
+
 </div>
 
 <script src="CreditScript.js"></script>

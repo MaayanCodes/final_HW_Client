@@ -1,20 +1,23 @@
+/* My main CSS page which i took to all the CSS to the other pages*/
+
 /* General page settings */
 body {
     background-color: #fdf1d7;
+    /* Defines the primary typeface, falling back to a generic sans-serif if Arial is unavailable */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
     direction: rtl;
 }
 
-/* Header styling using Flex */
+/* Styled container for the top greeting area using Flexbox for alignment */
 .header {
     display: flex;
-    /* Stack items vertically */
+    /* Aligns child elements in a vertical stack */
     flex-direction: column;
-    /* Center items horizontally */
+    /* Centers children along the cross-axis (horizontally) */
     align-items: center;
-    /* Centers the text lines themselves */
+    /* Ensures multi-line text remains centered */
     text-align: center;
     background-color: white;
     padding: 20px 40px;
@@ -22,20 +25,21 @@ body {
     border: 2px solid #ba782e;
     margin-bottom: 25px;
 
-    /* Limit the width so it doesn't span to the whole screen */
+    /* Restricts width on wide screens and centers the header block */
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Styling the greeting text inside the header */
+/* Large typography for the primary user greeting */
 .header h1 {
     font-size: 2.5em;
-    /* Removes default spacing around the heading */
+    /* Resets browser default margins for tighter spacing */
     margin: 0;
     color: #333;
 }
 
+/* Secondary display for real-time clock and date information */
 #dateTimeDisplay {
     font-size: 1.4em;
     color: #ca8126;
@@ -43,7 +47,7 @@ body {
     margin-top: 5px;
 }
 
-/* Logo - centered with Flex */
+/* Wrapper to horizontally center the brand logo */
 #logo-section {
     display: flex;
     justify-content: center;
@@ -51,24 +55,27 @@ body {
     margin-bottom: 20px;
 }
 
+/* Circular logo styling with a border and preparation for hover animations */
 #logo-section img {
     height: 200px;
     border-radius: 85%;
     border: 4px solid #ba782e;
-    transition: 0.4s; /* Smooth hover effect */
+    /* Defines the duration for the transform animation */
+    transition: 0.4s;
 }
 
 /* took from https://prismic.io/blog/css-hover-effects */
+/* Interactive zoom effect applied to the logo on mouse hover */
 #logo-section img:hover {
-    /* zoom on hover */
+    /* Increases the size slightly to create a focus effect */
     transform: scale(1.1);
 }
 
-/* Dashboard cards container */
+/* Main navigation/info container for dashboard cards */
 #dashboard-links {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    /* Provides consistent spacing between flex items */
     gap: 20px;
     margin-bottom: 40px;
     max-width: 1100px;
@@ -76,26 +83,25 @@ body {
     margin-right: auto;
 }
 
-/* Individual card styling */
+/* Reusable card component for dashboard sections */
 .card {
     background-color: white;
     border: 1px solid #ba782e;
     border-radius: 15px;
     padding: 20px;
-
-    /* For responsive page*/
-    flex-grow: 1;
-    min-width: 280px;
-    max-width: 480px;
     text-align: center;
+    /* Established fixed width to maintain grid consistency on desktop */
+    width: 300px;
 }
 
-/* Text in box color */
+/* Distinct color for section headings inside cards */
 .card h2 {
     color: #ca8126;
 }
 
+/* Button-style links within cards */
 .card a {
+    /* Changes display to block-level to apply padding and vertical margins */
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -106,17 +112,19 @@ body {
     border-radius: 10px;
 }
 
+/* Visual color shift for card buttons on hover */
 .card a:hover {
     background-color: #5a95e1;
 }
 
+/* Emphasis styling for the latest purchase details */
 #lastOrderDetails {
     font-size: 1.1em;
     color: black;
     font-weight: bold;
 }
 
-/* Histogram placeholder */
+/* Container for data visualization sections (Histogram) */
 #stats-section {
     background-color: white;
     padding: 20px;
@@ -124,7 +132,7 @@ body {
     border: 1px solid #ca8126;
     text-align: center;
     max-width: 800px;
-    /* Centers the section */
+    /* Standard method for centering block-level elements */
     margin: 0 auto;
 }
 
@@ -132,23 +140,38 @@ body {
     color: #ca8126;
 }
 
+/* Breakpoint for tablets and mobile devices */
+@media (max-width: 768px) {
+    /* Switches card layout from horizontal row to vertical column */
+    #dashboard-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Expands card width to occupy more screen real estate on mobile */
+    .card {
+        width: 90%;
+    }
+}
+
 /* CSS FOR CHART.JS HISTOGRAM */
 
 /* We override the placeholder styling to fit the chart properly */
 #histogramContainer {
-    /* Removing the dashed border from the placeholder */
+    /* Removing the dashed border (- - -) from the placeholder */
     border: none;
     background-color: transparent;
     /* Ensuring the chart has enough room but doesn't overflow */
     height: auto;
     min-height: 300px;
     width: 100%;
-    /* Change from flex to block for Canvas sizing */
+    /* Switched to block to allow Canvas internal resizing logic to work */
     display: block;
 }
 
-/* Ensure the canvas is responsive */
+/* Ensures the generated chart canvas is fluid and responsive */
 #purchaseChart {
     max-width: 100%;
+    /* !important ensures Chart.js height calculations don't override responsiveness */
     height: 100% !important;
 }

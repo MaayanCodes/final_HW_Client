@@ -1,63 +1,73 @@
-// Display the current balance on the screen
+// Updates UI elements with balance and nickname from LocalStorage
 function showBalance() {
-    // Get the value from local storage
+    // Get current credit and user nickname values from browser storage
     let moneyInStorage = localStorage.getItem('userCredit');
-    let displayDiv = document.getElementById('balanceDisplay');
+    let nickname = localStorage.getItem('userNickname');
 
-    // Check if the key exists in storage
-    if (moneyInStorage === null) {
-        // If it doesn't exist, show zero
-        displayDiv.innerText = "0 ₪";
+    // Select graphical card display elements for dynamic updates
+    let balanceDisplay = document.getElementById('displayBalance');
+    let nameDisplay = document.getElementById('displayNickname');
+
+    // Set balance display to stored value or default to zero
+    if (moneyInStorage == null) {
+        balanceDisplay.innerText = "0";
     } else {
-        // If it exists, show the stored value
-        displayDiv.innerText = moneyInStorage + " ₪";
+        balanceDisplay.innerText = moneyInStorage;
+    }
+
+    // Display stored nickname or the default placeholder "אורח"
+    if (nickname != null) {
+        nameDisplay.innerText = nickname;
+    } else {
+        nameDisplay.innerText = "אורח";
     }
 }
 
-// Function to handle the money loading process
+// Validates input and updates the stored credit balance
 function addMoney() {
-    // Get the input element and its text value
+    // Get input field and extract user-entered value as a string
     let inputField = document.getElementById('amountInput');
     let textValue = inputField.value;
 
-    // Convert the text to a float parseFloat
+    // Convert the string input into a floating-point number
     let amountToAdd = parseFloat(textValue);
 
-    // Check if the amount is a valid positive number
+    // Proceed only if the amount is a valid positive number
     if (amountToAdd > 0) {
-
-        // Get the current credit from storage
+        // Fetch existing credit and calculate the updated total
         let currentCredit = localStorage.getItem('userCredit');
         let newTotal;
 
-        if (currentCredit === null) {
-            // If it's the first time, the new total is just the input amount
+        // Initialize or increment balance based on existing data
+        if (currentCredit == null) {
             newTotal = amountToAdd;
-        } else {
-            // Convert existing storage string to a number and add the new amount
+        }
+        else {
             let existingNumber = parseFloat(currentCredit);
             newTotal = existingNumber + amountToAdd;
         }
 
-        // 5. Save the updated total back to local storage
+        // Store the updated balance back to LocalStorage
         localStorage.setItem('userCredit', newTotal);
 
-        // 6. Update the screen and notify the user
+        // Refresh the graphical card UI immediately without page reload
         showBalance();
-        // Clear the input box
+
+        // Clear input field and notify user of successful charge
         inputField.value = "";
-        alert("הטעינה בוצעה בהצלחה! הטענת: " + amountToAdd + " ₪");
+        alert("הטעינה בוצעה בהצלחה! היתרה החדשה: " + newTotal + " ₪");
 
     } else {
-        // If the input was invalid or zero/negative
+        // Handle non-numeric or invalid input errors with an alert
         alert("יש להכניס מספר חיובי בלבד");
     }
 }
 
-// Initialization function to run when the page loads
+// Page initialization logic to set up the card UI
 function init() {
+    // Populate the graphical card data on page load
     showBalance();
 }
 
-// Start the script
+// Start the script execution
 init();

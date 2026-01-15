@@ -1,12 +1,13 @@
-// Function to show a greeting based on the current hour
+// Function to show a greeting based on the current time
 function showGreeting() {
-    // Get nickname from storage
+    // Retrieves the stored nickname to personalize the header
     let user = localStorage.getItem('userNickname');
-    // Get current hour (0-23)
+
+    // Captures the current hour in 24-hour format (0-23)
     let hour = new Date().getHours();
     let greeting = "שלום";
 
-    // Determine the correct greeting string
+    // Logic to select the appropriate greeting string based on the time of day
     if (hour >= 5 && hour < 12) {
         greeting = "בוקר טוב";
     } else if (hour >= 12 && hour < 18) {
@@ -23,10 +24,11 @@ function showGreeting() {
     }
 }
 
-// Function to count and display orders made in the current month
+// Calculates and displays the total number of orders placed in the current calendar month
 function showMonthlyOrders() {
     // Get the current date details
     let now = new Date();
+
     // getMonth() returns 0-11, so we add 1 to match the "MM" format (1-12)
     let currentMonth = now.getMonth() + 1;
     let currentYear = now.getFullYear();
@@ -42,12 +44,13 @@ function showMonthlyOrders() {
         let orders = JSON.parse(data);
 
         // Iterate through each order in the array
+        // Filters orders by comparing their saved date components to the current date
         for (let i = 0; i < orders.length; i++) {
-            // Split the date string "DD.MM.YYYY" into an array using the dot as a separator
-            // Example: "15.05.2024" becomes ["15", "05", "2024"]
+            // Split the date string "DD/MM/YYYY" into an array using the / as a separator
+            // Example: "15/05/2024" becomes ["15", "05", "2024"]
             let dateParts = orders[i].Date.split('/');
 
-            // Convert the string parts to integers for comparison
+            // Convert the string parts to integers for comparison and get the month and year
             let orderMonth = parseInt(dateParts[1]); // The second part is the month
             let orderYear = parseInt(dateParts[2]);  // The third part is the year
 
@@ -58,38 +61,40 @@ function showMonthlyOrders() {
         }
     }
 
-    // Update the text on the screen with the final count
+    // Updates the dashboard UI with the calculated sum
     display.innerText = "ביצעת " + count + " הזמנות החודש";
 }
 
-// Function to display the most recent order details from storage
+// Retrieves and displays the details of the very last order found in the history array
 function showLastOrder() {
     // Get order history string
     let data = localStorage.getItem('userOrders');
     let display = document.getElementById('lastOrderDetails');
 
     // If history exists, parse it and find the last item
-    if (data !== null) {
+    if (data) {
         let orders = JSON.parse(data);
 
-        // Only proceed if there is at least one order
+        // Ensures the array is not empty before attempting to access an index
         if (orders.length > 0) {
-            // Access the last element in the array (newest order)
-            let last = orders[orders.length - 1];
+            // Use the helper function from historyScript.js to sort the items
+            orders.sort(sortOrdersByDate);
+            // Selects the first element in the array representing the most recent purchase
+            let latest = orders[0];
 
-            // Format: Product Name | Price | Date
-            display.innerText = last.ProductName + " | " + last.Date + " | " + last.Price + " ₪";
+            // Injects a formatted string: Product Name | Price | Date
+            display.innerText = latest.ProductName + " | " + latest.Date + " | " + latest.Price + " ₪";
         }
     }
 }
 
-// Function to display the current credit balance
+// Updates the credit balance display from LocalStorage
 function showCredit() {
     // Fetch balance from local storage
     let balance = localStorage.getItem('userCredit');
     let creditSpan = document.getElementById('creditAmount');
 
-    // Show 0 if no balance is found
+    // Defaults to zero if the user has no recorded credit balance
     if (balance === null) {
         creditSpan.innerText = "0";
     } else {
@@ -97,37 +102,39 @@ function showCredit() {
     }
 }
 
-// Function to display current date and time
+// Renders the current date and time using localized Hebrew formatting
 function showDateTime() {
     // Get current date object
     let now = new Date();
 
-    // Format date and time for Hebrew locale
+    // Standard Hebrew locale date string (DD.MM.YYYY)
     let dateStr = now.toLocaleDateString('he-IL');
+
+    // Configures the time format to include hours, minutes, and seconds
     let timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
     let timeStr = now.toLocaleTimeString('he-IL', timeOptions);
 
-    // Update the DOM elements
+    // Synchronizes the display elements with the latest time data
     document.getElementById('currentDate').innerText = dateStr;
     document.getElementById('currentTime').innerText = timeStr;
 }
 
-// Function to process order data and build the bar chart using Chart.js
+// Aggregates order data and initializes a Bar Chart using the Chart.js library
 function buildHistogram() {
     // Get the raw order data
     let rawData = localStorage.getItem('userOrders');
 
-    // Stop if there is no data to display
+    // Exits early if no data is available to prevent chart errors
     if (rawData === null) {
         return;
     }
 
     // Convert string to array of objects
     let allOrders = JSON.parse(rawData);
-    // Object to store the frequency of each product
+    // An object used as a hash map to store 'Product Name': 'Total Count'
     let counts = {};
 
-    // Count occurrences of each product name
+    // Populates the frequency map by iterating through the order history
     for (let i = 0; i < allOrders.length; i++) {
         let productName = allOrders[i].ProductName;
 
@@ -138,7 +145,7 @@ function buildHistogram() {
         }
     }
 
-    // Prepare arrays for labels and data values
+    // Separates the frequency map into arrays compatible with Chart.js labels and data
     let labelsArray = [];
     let dataArray = [];
 
@@ -149,20 +156,21 @@ function buildHistogram() {
 
     // Colors for the bars
     let colorsPalette = [
-        '#4E79A7',
-        '#A0CBE8',
-        '#F28E2B',
-        '#FFBE7D',
-        '#59A14F',
-        '#8CD17D',
-        '#B6992D',
-        '#499894'
+        '#FFADAD',
+        '#FFD6A5',
+        '#FDFFB6',
+        '#CAFFBF',
+        '#9BF6FF',
+        '#A0C4FF',
+        '#BDB2FF',
+        '#FFC6FF'
     ];
 
     // Get the canvas context for Chart.js
+    // Targets the HTML Canvas element for chart rendering
     let ctx = document.getElementById('purchaseChart').getContext('2d');
 
-    // Create a new bar chart
+    // Constructor for the Chart.js instance
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -180,6 +188,7 @@ function buildHistogram() {
             scales: {
                 y: {
                     beginAtZero: true,
+                    // Ensures the Y-axis only displays whole number increments
                     ticks: { stepSize: 1 }
                 }
             }
@@ -187,7 +196,8 @@ function buildHistogram() {
     });
 }
 
-// Main initialization function to run on page load
+
+// Entry point for the dashboard logic; executes all display functions on load
 function init() {
     showGreeting();
     showDateTime();
@@ -196,9 +206,9 @@ function init() {
     buildHistogram();
     showMonthlyOrders();
 
-    // Update the clock every 1 second
+    // Establishes a 1-second interval to create a live-updating digital clock
     setInterval(showDateTime, 1000);
 }
 
-// Start the script
+// Triggers the initialization sequence
 init();

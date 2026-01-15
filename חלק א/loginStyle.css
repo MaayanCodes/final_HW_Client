@@ -1,9 +1,9 @@
-/* General body styling */
+/* General page styling */
 body {
     background-color: #efeadc;
     font-family: Arial, sans-serif;
     margin: 0;
-    /* Default padding for desktop */
+    /* Default padding for desktop size */
     padding: 100px;
 }
 
@@ -22,7 +22,7 @@ body {
 
 /* Styling the inputs */
 .form-group input {
-    /* Taking most of the container width */
+    /* Fill most of the container width */
     width: 90%;
     padding: 10px;
     margin-bottom: 15px;
@@ -30,7 +30,7 @@ body {
     border-radius: 5px;
 }
 
-/* Button styling */
+/* Main submission button styling */
 button {
     background-color: #f1792a;
     color: white;
@@ -40,11 +40,12 @@ button {
     width: 100%;
 }
 
+/* Visual effect */
 button:hover {
     background-color: #5a95e1;
 }
 
-/* Error message default state */
+/* Default hidden state for validation error messages */
 #errorMsg {
     color: red;
     display: none;
@@ -54,14 +55,14 @@ button:hover {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    /* Adjusting body padding for small screens */
+    /* Reduces page padding to maximize space on smaller screens */
     body {
         padding: 40px;
     }
 
-    /* Making the container fluid on mobile */
+    /* Converts the fixed-width container into a fluid element */
     .login-container {
-        /* Using percentage for width as seen in slides */
+        /* Utilizes percentage-based width to fit mobile viewports */
         width: 90%;
         padding: 20px;
     }

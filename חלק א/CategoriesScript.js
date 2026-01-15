@@ -1,8 +1,8 @@
-// Function to handle category selection and storage
+// Processes the user's category selection and manages page transition
 function selectCategory(categoryName) {
-    // Save the selected category to localStorage
+    // Stores the selected category in LocalStorage to inform the Menu page which items to load
     localStorage.setItem('selectedCategory', categoryName);
 
-    // Navigate to the items menu
+    // Redirects the user to the menu items screen
     window.location.href = 'menu.html';
 }

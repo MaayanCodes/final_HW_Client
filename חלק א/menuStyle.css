@@ -7,6 +7,7 @@ body {
     direction: rtl;
 }
 
+/* Flexbox header to align the navigation button and the dynamic menu title */
 .header {
     display: flex;
     align-items: center;
@@ -15,6 +16,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Uses flex-grow to push the title to the center regardless of button width */
 .header h1 {
     flex-grow: 1;
     text-align: center;
@@ -23,7 +25,7 @@ body {
     font-size: 2.8em;
 }
 
-/* Styling the button*/
+/* Navigation button styling for returning to the category selection screen */
 .back-btn {
     background-color: #ca8126;
     color: white;
@@ -34,17 +36,20 @@ body {
     font-size: 1.1rem;
 }
 
+/* Hover effect for better user interaction feedback */
 .back-btn:hover {
     background-color: #5a95e1;
 }
 
-/* Grid for items */
+/* Defines a 3-column responsive layout for the product listings */
 .items-grid {
+    /* Creates three equal-width columns for the desktop view */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
+/* Individual product container with a clean card design */
 .item-card {
     background-color: white;
     border: 1px solid #ba782e;
@@ -53,15 +58,21 @@ body {
     text-align: center;
 }
 
+/* Hover effect for better user interaction feedback */
+.item-card:hover {
+    background-color: #5a95e1;
+}
+
+/* Standardizes product image sizes across the menu */
 .item-card img {
     width: 100%;
     height: 180px;
-    /* Same size for all photos */
+    /* Crops the image to fill the container without stretching the aspect ratio */
     object-fit: cover;
     border-radius: 10px;
 }
 
-/* Add to Order Button */
+/* Styling for the purchase action button */
 .add-btn {
     background-color: #ca8126;
     color: white;
@@ -71,12 +82,18 @@ body {
     margin-top: 10px;
 }
 
+/* Interactive hover color shift for the purchase button */
 .add-btn:hover {
-    background-color: #5a95e1;
+    background-color: black;
 }
 
-/* Responsive adjustment */
+/* Adjustments for tablets and mobile screens under 768px */
 @media (max-width: 768px) {
+    /* Switches to a single-column layout for readability on narrow screens */
     .items-grid { grid-template-columns: 1fr; }
-    .header { flex-direction: column; gap: 10px; }
+
+    /* Stacks header elements vertically on small viewports */
+    .header {
+        flex-direction: column;
+        gap: 10px; }
 }

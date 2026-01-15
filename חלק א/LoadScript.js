@@ -1,9 +1,10 @@
-// Function to show status message to the user
+// Displays a visual status message to the user based on the operation result
 function showStatus(msg, isError) {
     // Get the status element
     let status = document.getElementById('statusMsg');
     status.innerText = msg;
-    // Set color based on success or error
+
+    // Apply conditional styling to distinguish between errors and success
     if (isError) {
         status.style.color = "red";
     }
@@ -15,61 +16,68 @@ function showStatus(msg, isError) {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications
 
-// Function to handle menu file loading
+// Processes the menu JSON file and saves it to local storage
 function loadMenuJSON() {
-    // Get the file input element
+    // Capture the file object selected by the user from the input field
     let fileInput = document.getElementById('menuFileInput');
+    // The content of the file is in fileInput.files[0]
     let file = fileInput.files[0];
 
-    // Check if file was selected
+    // Validate that a file has been selected before starting the reader
     if (!file) {
         showStatus("ראשית נא בחר קובץ", true);
         return;
     }
 
-    // Initialize file reader
+    // Initialize the FileReader to process the file content
     let reader = new FileReader();
-    // Action after reading finishes
+    // Define the event handler for when the file reading process completes
+    // (Action after reading finishes)
     reader.onload = function(e) {
-        // Convert string content to JSON object
+        // Parse the raw text content into a JavaScript object
         let data = JSON.parse(e.target.result); // e.target.result - the content of the file
-        // Store in LocalStorage
+        // Overwrite the existing menu items in storage with the new data
         localStorage.setItem('menuItems', JSON.stringify(data));
         showStatus("התפריט נטען בהצלחה", false);
     };
+    // Begin reading the file as a plain text string
     reader.readAsText(file);
 }
-
-// Function to handle history file loading
+// Merges imported order history with the current history in storage
 function loadHistoryJSON() {
-    // Get the history input element
+    // Identify the specific input element for history files
     let fileInput = document.getElementById('historyFileInput');
     let file = fileInput.files[0];
 
-    // Verify file selection
+    // Ensure a file is present to avoid processing errors
     if (!file) {
         showStatus("ראשית נא בחר קובץ", true);
         return;
     }
 
-    // Initialize reader for history file
+    // Set up a new reader instance for the history data
     let reader = new FileReader();
+
+    // Handle the logic once the history file is fully read
     reader.onload = function(e) {
+        // Convert the imported JSON string into an array
         let newData = JSON.parse(e.target.result);
-        // Get existing history or start empty array
+        // Fetch existing history or initialize an empty array if none exists
         let currentOrders = JSON.parse(localStorage.getItem('userOrders'));
         if (!currentOrders) {
             currentOrders = [];
         }
 
-        // Loop through new orders and add to list
+        // Iterate through the imported list and append each item to the main history
         for (let i = 0; i < newData.length; i++) {
             currentOrders.push(newData[i]);
         }
 
-        // Save combined list to storage
+        // Persist the combined historical data back to LocalStorage
         localStorage.setItem('userOrders', JSON.stringify(currentOrders));
         showStatus("ההיסטוריה נטענה בהצלחה", false);
     };
+
+    // Start the asynchronous reading of the history file
     reader.readAsText(file);
 }

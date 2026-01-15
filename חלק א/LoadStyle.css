@@ -6,7 +6,7 @@ body {
     padding: 20px;
 }
 
-/* Header styling using flex */
+/* Flexbox container for the top navigation and title area */
 .header {
     display: flex;
     align-items: center;
@@ -15,20 +15,20 @@ body {
     margin-bottom: 30px;
 }
 
-/* Title centering */
+/* Centers the title text within the available header space */
 .header h1 {
     flex-grow: 1;
     text-align: center;
 }
 
-/* Main content layout */
+/* Centered content wrapper with a restricted maximum width */
 .load-container {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
 
-/* Card styling for upload sections */
+/* Styled card containers for organizing the upload sections */
 .load-card {
     background-color: white;
     border: 2px solid #ba782e;
@@ -37,6 +37,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Navigation button styling for returning to the main menu */
 .back-btn {
     background-color: #ca8126;
     color: white;
@@ -45,11 +46,12 @@ body {
     border-radius: 10px;
 }
 
+/* Hover color change to provide user interaction feedback */
 .back-btn:hover {
     background-color: #5a95e1;
 }
 
-/* Button layout and design */
+/* Design for the primary buttons used to trigger file loading */
 .action-btn {
     background-color: #ca8126;
     color: white;
@@ -59,24 +61,26 @@ body {
     margin-top: 15px;
 }
 
-/* Hover effect for buttons */
+/* Hover state for the action buttons to enhance visibility */
 .action-btn:hover {
     background-color: #5a95e1;
 }
 
-/* Hidden status message */
+/* Default hidden state for process status or error messages */
 #statusMsg {
     font-weight: bold;
     display: none;
     margin-top: 20px;
 }
 
-/* Mobile adjustments */
+/* Breakpoint for tablets and mobile devices under 768px */
 @media (max-width: 768px) {
+    /* Switches header to a vertical stack on small screens */
     .header {
         flex-direction: column;
         gap: 15px;
     }
+    /* Adjusts container width to fit mobile viewports */
     .load-container {
         width: 95%;
     }

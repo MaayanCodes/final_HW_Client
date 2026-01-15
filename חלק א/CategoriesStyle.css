@@ -7,7 +7,7 @@ body {
     direction: rtl;
 }
 
-/* Header layout using Flex */
+/* Flexbox container for the header to align the back button and main title */
 .header {
     display: flex;
     align-items: center;
@@ -16,7 +16,9 @@ body {
     margin-bottom: 25px;
 }
 
+/* Allows the title to occupy the remaining space, effectively centering it */
 .header h1 {
+    /* Fills all available remaining space */
     flex-grow: 1;
     text-align: center;
     margin: 0;
@@ -25,7 +27,7 @@ body {
     font-size: 2.8em;
 }
 
-/* Styling the button*/
+/* Styled navigation button for returning to the previous screen */
 .back-btn {
     background-color: #ca8126;
     color: white;
@@ -36,21 +38,23 @@ body {
     font-size: 1.1rem;
 }
 
-
+/* Hover state to provide visual feedback to the user */
 .back-btn:hover {
     background-color: #5a95e1;
 }
 
-/* Grid layout - Default for Desktop */
+
+/* Main content layout using CSS Grid for a 3-column desktop display */
 .categories-grid {
     display: grid;
+    /* Divides the container into three equal-width columns */
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* Card styling */
+/* Individual card components representing menu categories */
 .category-card {
     background-color: white;
     border: 1px solid #ba782e;
@@ -59,42 +63,50 @@ body {
     text-align: center;
 }
 
+/* Changes the background color on hover to highlight the selection */
+.category-card:hover {
+    background-color: #5a95e1;
+}
+
+/* Standardizes the size of category images across all cards */
 .category-card img {
     border-radius: 10px;
     width: 100%;
     height: 200px;
-    /* Prevents image stretching */
+    /* Ensures the image fills the area without stretching or distortion */
     object-fit: cover;
 }
 
+/* Styling for category titles inside the cards */
 .category-card h3 {
     color: #ca8126;
     margin-top: 10px;
 }
 
-/* Specific logic for Desktop  */
+/* For my adhd problem */
+/* Desktop-specific adjustments for larger screens */
 @media (min-width: 769px) {
     header h1 {
-        /* Shifts the title slightly left to center */
+        /* Balances the centering of the title by offsetting the space occupied by the button (shift left) */
         padding-right: 120px;
     }
 }
 
-/* For Mobile Phones */
+/* Responsive breakpoint for tablets and mobile devices */
 @media (max-width: 768px) {
     .categories-grid {
-        /* Switch to 1 column*/
+        /* Reconfigures the grid to a single-column layout for small viewports */
         grid-template-columns: 1fr;
     }
 
+    /* Stacks the header button and title vertically */
     .header {
-        /* Stacks items vertically on mobile */
         flex-direction: column;
         gap: 15px;
     }
 
     .header h1 {
-        /* Removes the shift to stay centered on mobile */
+        /* Removes desktop-specific padding to ensure correct centering on mobile (the shift left we did) */
         padding-right: 0;
         /* Smaller title for small screens */
         font-size: 2em;

@@ -1,4 +1,4 @@
-/* General settings */
+/* Sets the global background, primary font, and RTL text direction */
 body {
     background-color: #fdf1d7;
     font-family: Arial, sans-serif;
@@ -7,6 +7,7 @@ body {
     direction: rtl;
 }
 
+/* Flexbox header container to align the navigation button and title */
 .header {
     display: flex;
     align-items: center;
@@ -15,17 +16,17 @@ body {
     margin-bottom: 30px;
 }
 
+/* Centers the heading and applies an offset for balanced alignment on desktop */
 .header h1 {
     flex-grow: 1;
     text-align: center;
     font-size: 2.8em;
     color: #333;
     margin: 0;
-    /* Offset for the button to keep it perfectly centered */
     padding-right: 120px;
 }
 
-/* Rounded button with hover effect */
+/* Rounded navigation button with defined padding and typography */
 .back-btn {
     background-color: #ca8126;
     color: white;
@@ -36,11 +37,12 @@ body {
     font-size: 1rem;
 }
 
+/* Visual feedback for users when hovering over the back button */
 .back-btn:hover {
     background-color: #5a95e1;
 }
 
-/* Container styled like a card */
+/* Main card-style container for the history table */
 .history-container {
     max-width: 900px;
     margin: 0 auto;
@@ -50,13 +52,15 @@ body {
     border: 2px solid #ba782e;
 }
 
-/* Clean table styling */
+/* Ensures table borders are merged into a single line for a clean look */
 table {
     width: 100%;
     /* merges adjacent cell borders into a single, continuous line */
     border-collapse: collapse;
 }
 
+
+/* General cell styling including padding and alignment */
 td {
     padding: 18px;
     border-bottom: 1px solid #f0f0f0;
@@ -64,7 +68,7 @@ td {
     font-size: 1.1em;
 }
 
-/* Header row styling */
+/* Distinct styling for the table header row using theme colors */
 .table-header td {
     font-weight: bold;
     background-color: #fdf1d7;
@@ -72,7 +76,7 @@ td {
     border-bottom: 3px solid #ba782e;
 }
 
-/* Empty message styling */
+/* Hidden by default; styles the message shown when the history is empty */
 #emptyMsg {
     display: none;
     text-align: center;
@@ -82,9 +86,21 @@ td {
     font-weight: bold;
 }
 
-/* Responsive for Mobile */
+/* Responsive adjustments for mobile devices under 768px */
 @media (max-width: 768px) {
-    .header { flex-direction: column; gap: 15px; }
-    .header h1 { padding-right: 0; font-size: 2.2em; }
-    .history-container { width: 95%; padding: 15px; }
+    /* Stacks the header button and title vertically for narrow screens */
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    /* Removes the desktop offset and adjusts font size for mobile */
+    .header h1 {
+        padding-right: 0;
+        font-size: 2.2em;
+    }
+    /* Ensures the table container fills the width of the mobile viewport */
+    .history-container {
+        width: 95%;
+        padding: 15px;
+    }
 }

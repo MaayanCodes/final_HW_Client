@@ -10,51 +10,52 @@ function getCategoryId(categoryName) {
 }
 
 // Function to render items based on the chosen category
+// Dynamically generates HTML elements for products belonging to the selected category
 function renderMenu(categoryName) {
-    // Get the container element using DOM
+    // Selects the target container and clears any existing content (to add via DOM)
     let container = document.getElementById('itemsContainer');
     container.innerHTML = "";
 
-    // Load items from local storage
+    // Retrieves the menu data from local storage
     let menuData = localStorage.getItem('menuItems');
     let menuItems = [];
 
-    // If data exists, parse the JSON string
+    // Parses the data into an array if it exists
     if (menuData != null) {
         menuItems = JSON.parse(menuData);
     }
 
-    // Get the ID for the current category string
+    // Identifies the ID to filter products correctly
     let categoryId = getCategoryId(categoryName);
 
-    // Loop through all items loaded from storage
+    // Iterates through the full menu to find matching items of the category
     for (let i = 0; i < menuItems.length; i++) {
         let item = menuItems[i];
 
-        // Filter items by category ID
-        if (item.Categoryld === categoryId) {
-            // Create item card
+        // Only creates elements for items within the current category
+        if (item.CategoryId === categoryId) {
+            // Main card wrapper for the product
             let card = document.createElement('div');
             card.setAttribute('class', 'item-card');
 
-            // Set up the product image
+            // Product image setup
             let img = document.createElement('img');
             img.src = item.img;
 
 
-            // Set up title
+            // Product title (H3)
             let h3 = document.createElement('h3');
             h3.innerText = item.ProductName;
 
-            // Set up description
+            // Product description
             let p = document.createElement('p');
             p.innerText = item.desc;
 
-            // Set up price
+            // Price display formatted with currency symbol
             let priceTag = document.createElement('div');
             priceTag.innerText = item.Price + ' ₪';
 
-            // Create buy button
+            // Interaction button for the purchase
             let buyBtn = document.createElement('button');
             buyBtn.className = 'add-btn';
             buyBtn.innerText = 'רכישה';
@@ -64,7 +65,7 @@ function renderMenu(categoryName) {
                 processPurchase(item);
             };
 
-            // Assemble the card and append to container
+            // Appends all components to the card and append to the container
             card.appendChild(img);
             card.appendChild(h3);
             card.appendChild(p);
@@ -77,20 +78,22 @@ function renderMenu(categoryName) {
 
 // Handle the purchase process and credit updates
 function processPurchase(item) {
+    // Retrieves and converts current credit from a string to a floating-point number
     let creditValue = localStorage.getItem('userCredit');
     let currentBalance = 0;
-
     if (creditValue !== null) {
         currentBalance = parseFloat(creditValue);
     }
 
     let itemPrice = parseFloat(item.Price);
 
+    // Checks if the user has sufficient funds
     if (currentBalance >= itemPrice) {
+        // Updates the remaining balance in storage
         let newBalance = currentBalance - itemPrice;
         localStorage.setItem('userCredit', newBalance);
 
-        // Fetch existing order history
+        // Fetches existing order history or initializes a new array
         let ordersFromStorage = localStorage.getItem('userOrders');
         let ordersArray = [];
 
@@ -99,13 +102,14 @@ function processPurchase(item) {
             ordersArray = JSON.parse(ordersFromStorage);
         }
 
-        // --- Standardizing the date with leading zeros and slashes ---
+        // Logic for formatting the current date as DD/MM/YYYY with leading zeros
         let now = new Date();
         let d = now.getDate();
-        let m = now.getMonth() + 1; // Months are 0-11
+        // getMonth is zero-based (0-11) so we add one to get 1-12
+        let m = now.getMonth() + 1;
         let y = now.getFullYear();
 
-        // Add leading zero if needed
+        // Standardizes day and month digits for consistent sorting later (adding leading zero)
         if (d < 10) {
             d = "0" + d;
         }
@@ -116,36 +120,38 @@ function processPurchase(item) {
         // Create formatted date string: DD/MM/YYYY
         let formattedDate = d + "/" + m + "/" + y;
 
-        // Create new order record
+        // Creates a structured record of the transaction
         let newOrder = {
             ProductName: item.ProductName,
             Price: item.Price,
             Date: formattedDate
         };
 
-        // Add the new order to the ordersArray
+        // Appends the new order to the list and saves the updated history string
         ordersArray.push(newOrder);
-
-        // Save the updated ordersArray back to storage as a string
         localStorage.setItem('userOrders', JSON.stringify(ordersArray));
 
-        alert("הקנייה בוצעה בהצלחה! רכשת: " + item.ProductName);
+        // Provides immediate visual confirmation of the successful transaction
+        alert("הקנייה בוצעה בהצלחה! רכשת: " + item.ProductName + ' נשארה יתרה של: ' + newBalance);
     }
     else {
+        // Fallback error if funds are inadequate
         alert("הפעולה נכשלה: אין מספיק כסף בחשבון");
     }
 }
 
 // Main initialization function
 function init() {
-    // Get the category that was clicked in the previous screen
+
+    // Retrieves the state passed from the Categories page
     let chosenCategory = localStorage.getItem('selectedCategory');
 
+    // Updates the page header and populates the items if a category is found
     if (chosenCategory !== null) {
         document.getElementById('menuTitle').innerText = "תפריט " + chosenCategory;
         renderMenu(chosenCategory);
     }
 }
 
-// Start the page logic
+// Launches the script logic upon page load
 init();
